@@ -2,26 +2,13 @@
 
 class Api
 {
-    public function Conexao()
+    public function ConexaoApi()
     {
-        try {
-            // Inicia uma sessão cURL
-            $curlSession = curl_init();
-
-            // Define as opções da sessão
-            curl_setopt($curlSession, CURLOPT_URL, 'https://jsonplaceholder.typicode.com/todos');
-
-            // Executa a sessão e obtém os dados em JSON
-            $jsonData = json_decode(curl_exec($curlSession));
-
-            // Fecha a sessão
-            curl_close($curlSession);
-
-            // Imprime os dados em um array PHP
-            print_r($jsonData);
-        } catch (PDOException $objErro) {
-            echo 'SGBD Indisponivel: ' . $objErro->getMessage();
-            exit();
-        }
+        $url = 'https://jsonplaceholder.typicode.com/todos';
+        $curl =  curl_init($url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        $resultado = json_decode(curl_exec($curl));
+        return $resultado;
     }
 }

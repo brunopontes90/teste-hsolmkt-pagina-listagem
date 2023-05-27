@@ -13,14 +13,12 @@
 <body class="container">
     <h1 class="text-center">Listagem</h1>
     <?php
-    $url = 'https://jsonplaceholder.typicode.com/todos';
-    $curl =  curl_init($url);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    $resultado = json_decode(curl_exec($curl));
+    require_once './api/Api.php';
+    $conexao = new Api();
+    $resultado = $conexao->ConexaoApi();
     ?>
 
-    <table class="table">
+    <table class="table table-dark">
         <thead class="text-center">
             <tr>
                 <th scope="col">ID</th>
