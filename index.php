@@ -12,7 +12,7 @@
     <title>Listagem</title>
 </head>
 
-<body class="container">
+<body class="container-fluid">
     <?php
     include_once './api/Api.php';
     $conexao = new Api();
