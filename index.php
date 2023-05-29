@@ -51,7 +51,7 @@ $resultado = $conexao->ConexaoApi();
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="TituloModalCentralizado">Título do modal</h5>
+                    <h5 class="modal-title" id="TituloModalCentralizado">Editar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -61,11 +61,11 @@ $resultado = $conexao->ConexaoApi();
                         <form class="" method="POST">
                             <div class="form-group">
                                 <label class="label">Titulo:</label>
-                                <input class="form-control" type="text" name="titulo" id="titulo" value="<?= $value->title ?>" placeholder="Titulo" required />
+                                <input class="form-control" type="text" name="titulo" id="titulo" placeholder="Titulo" required />
                             </div>
                             <div class="form-group">
                                 <label class="label">Completo:</label>
-                                <input class="form-control" type="text" name="completo" id="completo" value="<?= $value->completed == false ? "0" : "1" ?>" placeholder="Completo" required />
+                                <input class="form-control" type="text" name="completo" id="completo" placeholder="Completo" required />
                             </div>
                     </div>
                 </div>
