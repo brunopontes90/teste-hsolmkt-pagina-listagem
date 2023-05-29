@@ -1,3 +1,9 @@
+<?php
+include_once './api/Api.php';
+$conexao = new Api();
+$resultado = $conexao->ConexaoApi();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,12 +19,6 @@
 </head>
 
 <body class="container-fluid">
-    <?php
-    include_once './api/Api.php';
-    $conexao = new Api();
-    $resultado = $conexao->ConexaoApi();
-    ?>
-
     <h1 class="text-center">Listagem</h1>
     <table class="table table-dark">
         <thead class="text-center">
@@ -37,15 +37,15 @@
                     <td><?= $value->completed == false ? "Não" : "Sim" ?></td>
                     <td>
                         <!-- Botão para acionar modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ExemploModalCentralizado">
+                        <button type="button" class="btn btn-primary edit-button" data-toggle="modal" data-target="#ExemploModalCentralizado">
                             Editar
                         </button>
+
                     </td>
                 </tr>
             </tbody>
         <?php } ?>
     </table>
-
     <!-- Modal -->
     <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -58,14 +58,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="modal-body">
-                        <form class="" method="POST" action="">
+                        <form class="" method="POST">
                             <div class="form-group">
                                 <label class="label">Titulo:</label>
-                                <input class="form-control" type="text" name="titulo" id="titulo" value="<?= $value->title ?>" placeholder="Nome Completo" required />
+                                <input class="form-control" type="text" name="titulo" id="titulo" value="<?= $value->title ?>" placeholder="Titulo" required />
                             </div>
                             <div class="form-group">
                                 <label class="label">Completo:</label>
-                                <input class="form-control" type="text" name="completo" id="completo" value="<?= $value->completed == false ? "0" : "1" ?>" placeholder="Digite seu email" required />
+                                <input class="form-control" type="text" name="completo" id="completo" value="<?= $value->completed == false ? "0" : "1" ?>" placeholder="Completo" required />
                             </div>
                     </div>
                 </div>
@@ -76,6 +76,20 @@
             </div>
         </div>
     </div>
+
+    <!-- Captura o clique no botão "Editar", obtém os valores dos elementos da linha correspondente e preenche os campos do formulário com esses valores. -->
+    <script>
+        $(document).ready(function() {
+            $('.edit-button').click(function() {
+                let id = $(this).closest('tr').find('th').text();
+                let title = $(this).closest('tr').find('td:eq(0)').text();
+                let completed = $(this).closest('tr').find('td:eq(1)').text();
+
+                $('#titulo').val(title);
+                $('#completo').val(completed);
+            });
+        });
+    </script>
 </body>
 
 </html>
